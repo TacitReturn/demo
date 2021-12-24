@@ -1,7 +1,9 @@
-require('./bootstrap');
+window.axios = require('axios');
 
-import Alpine from 'alpinejs';
+import { createApp } from "vue";
 
-window.Alpine = Alpine;
+import App from "./vue/App";
 
-Alpine.start();
+createApp(App).mount("#app");
+
+require("./bootstrap");

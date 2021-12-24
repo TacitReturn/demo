@@ -13,6 +13,7 @@
         public $fillable = [
             "title",
             "overview",
+            "isbn",
             "publisher",
             "publication_date",
             "edition_description",

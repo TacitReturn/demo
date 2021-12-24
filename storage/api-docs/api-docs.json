@@ -1,0 +1,252 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Books OpenApi Demo Documentation",
+        "description": "Documentation for Laravel demo Books API",
+        "contact": {
+            "email": "superadmin@demo.test"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://demo.test/api",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get list of books",
+                "description": "Returns list of books",
+                "operationId": "getBooksList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Store new book",
+                "description": "Returns book data",
+                "operationId": "storeBook",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreBookRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Book": {
+                "title": "App\\Virtual\\Models\\Book",
+                "description": "Book Model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "Database ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "Name of the new book",
+                        "type": "string",
+                        "example": "Catcher In The Rye"
+                    },
+                    "overview": {
+                        "title": "Overview",
+                        "description": "Overview of a new book",
+                        "type": "string",
+                        "example": "This is new book's description"
+                    },
+                    "isbn": {
+                        "title": "ISBN",
+                        "description": "The International Standard Book Number (ISBN) is a numeric commercial book identifier",
+                        "type": "string",
+                        "example": "1-84356-028-3"
+                    },
+                    "publisher": {
+                        "title": "publisher",
+                        "description": "Publisher of the book",
+                        "type": "string",
+                        "example": "Simon Wallenberg Press"
+                    },
+                    "publication_date": {
+                        "title": "publication_date",
+                        "description": "The date the book was published",
+                        "type": "date",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "edition_description": {
+                        "title": "edition_description",
+                        "description": "A description of the book edition",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Hard cover"
+                    },
+                    "pages": {
+                        "title": "pages",
+                        "description": "The amount of pages a book has",
+                        "type": "integer",
+                        "format": "integer",
+                        "example": "500"
+                    },
+                    "lexile": {
+                        "title": "lexile",
+                        "description": "The Lexile Framework for Reading is an educational tool that uses a measure called a Lexile to match readers with books",
+                        "type": "string",
+                        "format": "string",
+                        "example": "AD740L"
+                    },
+                    "sales_rank": {
+                        "title": "sales_rank",
+                        "description": "refers to the estimated number of copies sold of each book",
+                        "type": "integer",
+                        "format": "integer",
+                        "example": "85000000"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "deleted_at": {
+                        "title": "Deleted at",
+                        "description": "Deleted at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "author_id": {
+                        "title": "Author ID",
+                        "description": "Author's id of the new project",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "author": {
+                        "title": "Author",
+                        "description": "Project author's user model",
+                        "format": "string"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Book"
+                }
+            },
+            "BookResource": {
+                "title": "App\\Virtual\\Resources\\BookResource",
+                "description": "Book resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Book"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "BookResource"
+                }
+            },
+            "StoreBookRequest": {
+                "title": "App\\Virtual\\StoreBookRequest",
+                "description": "Store Book request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new project",
+                        "type": "string",
+                        "example": "A nice project"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "Description of the new project",
+                        "type": "string",
+                        "example": "This is new project's description"
+                    },
+                    "author_id": {
+                        "title": "author_id",
+                        "description": "Author's id of the new project",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Books",
+            "description": "API Endpoints of Books"
+        }
+    ],
+    "security": [
+        []
+    ]
+}
